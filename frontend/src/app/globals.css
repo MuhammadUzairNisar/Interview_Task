@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/* Design tokens — clean light theme only. No pure/near-black. */
+@theme {
+  --color-background: #f5f7fb;
+  --color-foreground: #1e293b;
+  --color-card: #ffffff;
+  --color-muted: #eef2f7;
+  --color-muted-foreground: #475569;
+  --color-subtle: #64748b;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  --color-primary: #0d9488;
+  --color-primary-hover: #0f766e;
+  --color-primary-soft: #f0fdfa;
+  --color-on-primary: #ffffff;
+  --color-ring: #14b8a6;
+
+  --color-destructive: #dc2626;
+  --color-destructive-hover: #b91c1c;
+  --color-destructive-soft: #fef2f2;
+
+  --color-overlay: rgb(71 85 105 / 0.4);
+
+  --shadow-card: 0 1px 2px 0 rgb(71 85 105 / 0.06);
+  --shadow-card-hover: 0 4px 14px -2px rgb(71 85 105 / 0.1), 0 2px 4px -2px rgb(71 85 105 / 0.06);
+  --shadow-dialog: 0 24px 48px -12px rgb(71 85 105 / 0.22);
+}
+
+@theme inline {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+dialog[open] {
+  animation: dialog-in 200ms ease-out;
+}
+
+dialog::backdrop {
+  background: var(--color-overlay);
+  animation: fade-in 200ms ease-out;
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after,
+  dialog::backdrop {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
